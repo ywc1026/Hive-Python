@@ -1,5 +1,6 @@
 
 from dbbase.HIveBase import HiveBase
+import sys
 
 
 class GameTime(HiveBase):
@@ -25,6 +26,11 @@ class GameTime(HiveBase):
 
 if __name__ == '__main__':
 
-    obj = GameTime()
+    try:
+        date = sys.argv[1]
+    except Exception as e:
+        date = None
+
+    obj = GameTime(date)
 
     obj()

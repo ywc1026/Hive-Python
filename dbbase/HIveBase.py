@@ -7,11 +7,14 @@ import datetime
 
 class HiveBase(object):
 
-    def __init__(self):
+    def __init__(self, date=None):
 
         self.port = config.HIVE_PORT
         self.host = config.HIVE_HOST
-        self.today = datetime.datetime.now().date().strftime('%Y-%m-%d')
+        if date:
+            self.today = date
+        else:
+            self.today = datetime.datetime.now().date().strftime('%Y-%m-%d')
 
     def execute(self, hql=None):
 

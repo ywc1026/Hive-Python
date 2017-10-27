@@ -1,5 +1,6 @@
 
 from dbbase.HIveBase import HiveBase
+import sys
 
 
 class UserFee(HiveBase):
@@ -24,6 +25,11 @@ class UserFee(HiveBase):
 
 
 if __name__ == '__main__':
+
+    try:
+        date = sys.argv[1]
+    except Exception as e:
+        date = None
 
     obj = UserFee()
 

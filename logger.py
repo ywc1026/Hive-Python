@@ -1,6 +1,6 @@
 import logging
 from logging import StreamHandler
-from logging.handlers import RotatingFileHandler, SMTPHandler
+from logging.handlers import RotatingFileHandler
 import config
 
 
@@ -13,25 +13,10 @@ class LoggerConfig(object):
 
         self.add_stream_handler()
         self.add_file_handler()
-        self.add_email_handler()
 
     @property
     def logger(self):
         return logging.getLogger(self.logger_name)
-
-    def add_email_handler(self):
-
-        handler = SMTPHandler(mailhost=config.MAIL_HOST, fromaddr=config.MAIL_FROM, toaddrs=config.MAIL_TOLIST, subject='server error', credentials=(config.MAIL_USERNAME, config.MAIL_PASSWORD), secure=())
-        handler.setLevel(logging.ERROR)
-        handler.setFormatter(logging.Formatter('''
-                Message type: %(levelname)s
-                Location: %(pathname)s: %(lineno)d
-                Module: %(module)s
-                Function: %(funcName)s
-                Time: '%(asctime)s
-                Message:
-                    $(message)s'''))
-        logging.getLogger(self.logger_name).addHandler(handler)
 
     def add_stream_handler(self):
 
