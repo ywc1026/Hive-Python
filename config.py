@@ -11,5 +11,5 @@ MAIL_USERNAME = '1136937352@qq.com'
 MAIL_FROM = '1136937352@qq.com'
 MAIL_TOLIST = ['ywc1026@163.com']
 
-LOGGER_PATH = "/home/ywc/PycharmProjects/log"
+LOGGER_PATH = "/home/ywc/PycharmProjects/log/my.log"
 

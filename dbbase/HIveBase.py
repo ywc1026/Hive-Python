@@ -2,6 +2,7 @@
 from pyhive import hive
 from logger import logger
 import config
+import datetime
 
 
 class HiveBase(object):
@@ -10,6 +11,7 @@ class HiveBase(object):
 
         self.port = config.HIVE_PORT
         self.host = config.HIVE_HOST
+        self.today = datetime.datetime.now().date().strftime('%Y-%m-%d')
 
     def execute(self, hql=None):
 
@@ -18,7 +20,7 @@ class HiveBase(object):
 
             conn = hive.connect(host=self.host, port=self.port)
             cursor = conn.cursor()
-            cursor.execute()
+            cursor.execute(hql)
             cursor.commit()
             cursor.close()
             conn.close()
@@ -37,6 +39,7 @@ class HiveBase(object):
         raise 'Subclass must achive this function'
 
     def __call__(self, *args, **kwargs):
+        logger.info('date is --{}'.format(self.today))
         logger.info("Start creating table...")
         res = self.create_table()
         if res:

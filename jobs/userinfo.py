@@ -9,13 +9,13 @@ class UserInfo(HiveBase):
         hql = """
             create table if not EXISTS stat.userinfo (fuserid int, fage int, farea string, fmoney int)
             row format delimited fields terminated by ','
-            location '/user/hadoop/stat/userinfo'
+            location '/user/ywc/stat/userinfo'
         """
         return self.execute(hql)
 
     def do_jobs(self):
         hql = """
-            load data inpath '/user/hadoop/stat/userinfo' into table stat.userinfo
+            load data inpath '/user/ywc/stat/userinfo' into table stat.userinfo
         """
         return self.execute(hql)
 

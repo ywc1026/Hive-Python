@@ -9,13 +9,13 @@ class GameInfo(HiveBase):
         hql = """
             create table if not EXISTS stat.gameinfo (fgameid int, fgamename string)
             row format delimited fields terminated by ','
-            location '/user/hadoop/stat/userinfo'
+            location '/user/ywc/stat/gameinfo'
         """
         return self.execute(hql)
 
     def do_jobs(self):
         hql = """
-            load data inpath '/user/hadoop/stat/gameinfo' into table stat.gameinfo
+            load data inpath '/user/ywc/stat/gameinfo' into table stat.gameinfo
         """
         return self.execute(hql)
 
