@@ -22,7 +22,7 @@ class GameActive(HiveBase):
                     partition (dt='{fdate}')
                     select gt.fdate as fdate, gi.fgamename as fgamename, count(gt.fuserid) as fcount from stat.gametime as gt
                     left join stat.gameinfo as gi
-                    on gt.fgameid=gi,fgameid
+                    on gt.fgameid=gi.fgameid
                     where
                     gt.fdate='{fdate}'
                     group by gi.fgamename, gt.fdate
